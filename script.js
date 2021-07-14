@@ -15,7 +15,8 @@ chrome.tabs.executeScript({
         }
     }
 });
-   
+
+//這些是我額外寫的
 var xhr = new XMLHttpRequest();
 var text;
 xhr.onreadystatechange = function() {
