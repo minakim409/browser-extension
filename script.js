@@ -34,6 +34,7 @@ var xmlDOM = parser.parseFromString(text,"text/xml");
 var value = xmlDOM.getElementsByClassName("SFJkS3");
 console.log(value);
 
+//這些是我額外寫的
 var result = document.getElementsByClassName("aPKXeO");
 var label = -1;// means origin is not mentioned
 for (i = 0; i < result.length; i++){
