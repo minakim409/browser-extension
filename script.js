@@ -1,22 +1,42 @@
 
-   
-    //컨텐츠 페이지를 대상으로 코드를 실행해주세요. 
-chrome.tabs.executeScript({
-    code: 'document.querySelector("body").innerText'
-}, function (result) {
-    for(i=0; i<result.length; i++){
-        result[i].onmouseover = function() {
-            var shipping= this.getElementsByClassName("_2CWevj")[0].innerText;
-            var item_link = this.querySelector("a").href;
+window.addEventListener('DOMContentLoaded', function(){
+  chrome.tabs.executeScript({
+        code: 'document.body.innerHTML;'
+    }, function (result) {
+        //appear body.html til here
+        var items = result.getElementsByClassName("col-xs-2-4 shopee-search-item-result__item")
+        //from this part doesn't work getElementByClassName this one
+        document.querySelector('#result').innerText = items;
+        for(i=0; i< items.length; i++){
+            let shipping= result[i].getElementsByClassName("_2CWevj")[0].innerText;
+            let  item_link = result[i].querySelector("a").href;
             // console.log(this.getElementsByClassName("_2CWevj")[0].innerText);//이건 콘솔에서만 나타나는거
             // console.log(this.querySelector("a").href);
+            // alert(shipping);
             alert(shipping);
-            document.querySelector('#result').innerText = shipping + ',' + item_link;
+            document.querySelector('#result').value = shipping + ',' + item_link;
+            
         }
-    }
+    });
 });
+   
+    //컨텐츠 페이지를 대상으로 코드를 실행해주세요. 
+// chrome.tabs.executeScript({
+//     code: 'document.querySelector("body").innerText'
+// }, function (result) {
+//     for(i=0; i<result.length; i++){
+//         result[i].onmouseover = function() {
+//             var shipping= this.getElementsByClassName("_2CWevj")[0].innerText;
+//             var item_link = this.querySelector("a").href;
+//             // console.log(this.getElementsByClassName("_2CWevj")[0].innerText);//이건 콘솔에서만 나타나는거
+//             // console.log(this.querySelector("a").href);
+//             alert(shipping);
+//             document.querySelector('#result').innerText = shipping + ',' + item_link;
+//         }
+//     }
+// });
 
-//這些是我額外寫的
+//這些是我額外寫的, do not consider this part first
 var xhr = new XMLHttpRequest();
 var text;
 xhr.onreadystatechange = function() {
@@ -35,7 +55,7 @@ var xmlDOM = parser.parseFromString(text,"text/xml");
 var value = xmlDOM.getElementsByClassName("SFJkS3");
 console.log(value);
 
-//這些是我額外寫的
+//這些是我額外寫的, do not consider this part first
 var result = document.getElementsByClassName("aPKXeO");
 var label = -1;// means origin is not mentioned
 for (i = 0; i < result.length; i++){
